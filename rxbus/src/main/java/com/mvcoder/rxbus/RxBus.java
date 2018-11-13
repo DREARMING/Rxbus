@@ -213,7 +213,7 @@ public class RxBus {
             return;
         }
         Class<?> subClass = subscriber.getClass();
-        Method[] methods = subClass.getDeclaredMethods();
+        Method[] methods = subClass.getMethods();
         boolean recive = false;
         for (Method method : methods) {
             if (method.isAnnotationPresent(Subscribe.class)) {

@@ -40,6 +40,7 @@ public class RxbusPostActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.bt3:
                 RxBus.getDefault().post(100, 520);
+                RxBus.getDefault().post(102, "super call");
                 break;
         }
     }
