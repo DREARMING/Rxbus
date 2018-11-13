@@ -120,7 +120,7 @@ public class RxBus {
      * @param eventType 事件类型
      * @return
      */
-    public <T> Flowable toObservable(final int code, final Class<T> eventType, Scheduler workThread) {
+    private  <T> Flowable toObservable(final int code, final Class<T> eventType, Scheduler workThread) {
         return bus.ofType(Message.class)
                 .filter(new Predicate<Message>() {
                     @Override
@@ -331,7 +331,7 @@ public class RxBus {
      *
      * @param subscriberMethod
      */
-    public void addSubscriber(final SubscriberMethod subscriberMethod) {
+    private void addSubscriber(final SubscriberMethod subscriberMethod) {
         Flowable observable;
         Scheduler workThread = getScheduler(subscriberMethod);
         if (subscriberMethod.sticky) {
@@ -465,7 +465,7 @@ public class RxBus {
     /**
      * 移除指定eventType的Sticky事件
      */
-    public <T> T removeStickyEvent(Class<T> eventType) {
+    private  <T> T removeStickyEvent(Class<T> eventType) {
         synchronized (stickyEvent) {
             return eventType.cast(stickyEvent.remove(eventType));
         }
@@ -474,7 +474,7 @@ public class RxBus {
     /**
      * 移除所有的Sticky事件
      */
-    public void removeAllStickyEvents() {
+    private void removeAllStickyEvents() {
         synchronized (stickyEvent) {
             stickyEvent.clear();
         }
